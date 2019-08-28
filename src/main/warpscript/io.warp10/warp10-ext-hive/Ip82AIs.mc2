@@ -1,0 +1,47 @@
+{
+  'name' 'ORC->'
+  'since' '2.1.0'
+  'deprecated' ''
+  'deleted' ''
+  'version' 'all'
+  'tags' [ 'extension' ]
+  'ext' 'io.warp10.script.ext.hive.HiveWarpScriptExtension'
+  'desc' 
+    <'
+The `ORC->` functions interprets a record from an [ORC](https://orc.apache.org/) file using a specified schema. This function was created to allow the [`WarpScriptInputFormat`](https://www.warp10.io/content/05_Ecosystem/01_Hadoop/04_WarpScriptInputFormat) to process records read using [`org.apache.hadoop.hive.ql.io.orc.OrcNewInputFormat`](https://hive.apache.org/javadocs/r2.2.0/api/org/apache/hadoop/hive/ql/io/orc/OrcNewInputFormat.html).
+
+The function requires an ORC schema in order to know how to parse a record. An ORC file contains its schema definition, but this is not available to the `ORC->` function, so the schema must be extracted from the file using the [`ORC tools`](https://orc.apache.org/docs/java-tools.html) in the following way:
+
+```
+java -jar orc-tools-X.Y.Z-uber.jar meta ORC_FILE
+```
+
+The schema appears on a line starting with `Type:` such as:
+
+```
+Type: struct<boolean1:boolean,byte1:tinyint,short1:smallint,int1:int,long1:bigint,float1:float,double1:double,bytes1:binary,string1:string,middle:struct<list:array<struct<int1:int,string1:string>>>,list:array<struct<int1:int,string1:string>>,map:map<string,struct<int1:int,string1:string>>>
+```
+
+The schema must be specified at least on the first call to `ORC->`. For further calls using the same WarpScript execution environment (stack), it can be omitted, the last schema specified will be reused.
+    '>
+  'sig' [ 
+    [ [ 'schema:STRING' 'record:OrcStruct' ] [ 'parsed:MAP' ] ] 
+    [ [ 'record:OrcStruct' ] [ 'parsed:MAP' ] ]
+  ]
+  'params' {
+    'schema' 'ORC record schema description, as stored in the ORC file.'
+    'record' 'Instance of `OrcStruct` to parse.'
+    'parsed' 'Map containing the fields which were parsed.'
+  }
+  'related' []
+  'examples' [ 
+  ]
+  'conf' [ ]
+} '.info' STORE
+<%
+  !$.info INFO
+  <% 'ORC->' EVAL %> <% %> <% %> TRY
+%>
+'macro' STORE
+// Unit tests
+$macro
