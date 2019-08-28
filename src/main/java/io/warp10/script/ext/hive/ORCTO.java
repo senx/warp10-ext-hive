@@ -71,32 +71,30 @@ public class ORCTO extends NamedWarpScriptFunction implements WarpScriptStackFun
         typeinfo = (TypeInfo) stack.getAttribute(ATTR_ORC_TYPEINFO);        
       }
       top = stack.pop();
-    } else if (null == top) {
-      // Attempt to infer the typeinfo
-      top = stack.pop();
-      
-      OrcStruct orc = (OrcStruct) top;
-      List<StructField> fields = new ArrayList<StructField>(orc.getNumFields());
-      for (int i = 0; i < orc.getNumFields(); i++) {
-        fields.add(null);
-      }
+//    } else if (null == top) {
+//      // Attempt to infer the typeinfo
+//      top = stack.pop();
+//      
+//      OrcStruct orc = (OrcStruct) top;
+//      List<StructField> fields = new ArrayList<StructField>(orc.getNumFields());
+//      for (int i = 0; i < orc.getNumFields(); i++) {
+//        fields.add(null);
+//      }
     } else {
       typeinfo = (TypeInfo) stack.getAttribute(ATTR_ORC_TYPEINFO);
     }
     
-    if (!(top instanceof OrcStruct)) {      
-      throw new WarpScriptException(getName() + " operates on an OrcStruct instance.");
+//    if (!(top instanceof OrcStruct)) {      
+//      throw new WarpScriptException(getName() + " operates on an OrcStruct instance.");
+//    }
+
+    if (null == typeinfo) {
+      throw new WarpScriptException(getName() + " needs a type info schema on at least the first call.");
     }
 
-    OrcStruct orc = (OrcStruct) top;
-    
-//    if (null == typeinfo) {
-//      throw new WarpScriptException(getName() + " needs a type info schema on at least the first call.");
-//    }
-//    
-    ObjectInspector inspector = null != typeinfo ? OrcStruct.createObjectInspector(typeinfo) : null;
+    ObjectInspector inspector = OrcStruct.createObjectInspector(typeinfo);
 
-    stack.push(conv(orc, inspector));
+    stack.push(conv(top, inspector));
     
     return stack;
   }
@@ -104,11 +102,11 @@ public class ORCTO extends NamedWarpScriptFunction implements WarpScriptStackFun
   public static Object conv(Object o, ObjectInspector inspector) throws WarpScriptException {
     
     // Attempt to infer an inspector if none was provided
-    if (null == inspector) {
-      if (o instanceof OrcStruct) {
-        OrcStruct orc = (OrcStruct) o;
-      }
-    }
+//    if (null == inspector) {
+//      if (o instanceof OrcStruct) {
+//        OrcStruct orc = (OrcStruct) o;
+//      }
+//    }
 
     if (null == o) {
       return o;
