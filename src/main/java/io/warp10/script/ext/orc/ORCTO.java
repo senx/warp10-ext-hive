@@ -14,7 +14,7 @@
 //   limitations under the License.
 //
 
-package io.warp10.script.ext.hive;
+package io.warp10.script.ext.orc;
 
 import java.sql.Date;
 import java.sql.Timestamp;

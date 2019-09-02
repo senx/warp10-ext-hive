@@ -14,14 +14,14 @@
 //   limitations under the License.
 //
 
-package io.warp10.script.ext.hive;
+package io.warp10.script.ext.orc;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import io.warp10.warp.sdk.WarpScriptExtension;
 
-public class HiveWarpScriptExtension extends WarpScriptExtension {
+public class ORCWarpScriptExtension extends WarpScriptExtension {
   
   private static final Map<String,Object> functions;
   

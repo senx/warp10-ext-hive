@@ -5,7 +5,7 @@
   'deleted' ''
   'version' 'all'
   'tags' [ 'extension' ]
-  'ext' 'io.warp10.script.ext.hive.HiveWarpScriptExtension'
+  'ext' 'io.warp10.script.ext.orc.ORCWarpScriptExtension'
   'desc' 
     <'
 The `ORC->` functions interprets a record from an [ORC](https://orc.apache.org/) file using a specified schema. This function was created to allow the [`WarpScriptInputFormat`](https://www.warp10.io/content/05_Ecosystem/01_Hadoop/04_WarpScriptInputFormat) to process records read using [`org.apache.hadoop.hive.ql.io.orc.OrcNewInputFormat`](https://hive.apache.org/javadocs/r2.2.0/api/org/apache/hadoop/hive/ql/io/orc/OrcNewInputFormat.html).

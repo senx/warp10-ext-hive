@@ -67,7 +67,7 @@ project.ext.bintrayLicenses = [ '@LICENSE@' ]
 
 
 project.ext.group = 'io.warp10'
-project.ext.name = 'warp10-ext-hive'
+project.ext.name = 'warp10-ext-orc'
 project.ext.uberjar = null != System.getProperty('uberjar')
 project.ext.version = getVersionName('0.0.0') + (project.ext.uberjar ? '-uberjar' : '')
 
@@ -155,7 +155,7 @@ shadowJar {
   classifier = ''
 
   manifest {
-   attributes('WarpFleet-Description': 'Hive WarpScript™ Extension')
+   attributes('WarpFleet-Description': 'ORC WarpScript™ Extension')
    attributes('WarpFleet-Group': project.ext.group)
    attributes('WarpFleet-Artifact': project.ext.name)
    attributes('WarpFleet-Version': project.ext.version)

@@ -1,13 +1,13 @@
 {
   "type": "ext",
   "group": "io.warp10",
-  "artifact": "warp10-ext-hive",
+  "artifact": "warp10-ext-orc",
   "version": "0.0.0",
-  "description": "Hive WarpScript™ Extension",
+  "description": "ORC WarpScript™ Extension",
   "author": "SenX",
   "email": "contact@senx.io",
   "license": "Apache-2.0",
-  "git": "https://github.com/senx/warp10-ext-hive",
+  "git": "https://github.com/senx/warp10-ext-orc",
   "repoUrl": "https://dl.bintray.com/senx/maven/",
   "tags": [
     "Hive",
